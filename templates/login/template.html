@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<!-- Head -->
+<head>
+    <title>{% block title1 %}{% endblock %}</title>
+    <!-- Meta-Tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="keywords" content="">
+    <script type="application/x-javascript"> addEventListener("load", function () {
+        setTimeout(hideURLbar, 0);
+    }, false);
+
+    function hideURLbar() {
+        window.scrollTo(0, 1);
+    } </script>
+    <!-- //Meta-Tags -->
+
+    <link href="{% static 'login/css/popuo-box.css' %}" rel="stylesheet" type="text/css" media="all"/>
+    <script type="text/javascript" src="{% static 'login/js/jquery-2.1.4.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'login/css/style.css' %}" type="text/css" media="all">
+    <style>
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1; /* 确保粒子效果位于背景之后 */
+        }
+    </style>
+
+</head>
+<!-- //Head -->
+
+<!-- Body -->
+<body>
+<canvas id="particles"></canvas>
+<h1>胃肠道癌细胞分割平台</h1>
+
+<div class="w3layoutscontaineragileits">
+    <h2>{% block title2 %}{% endblock %}</h2>
+    <form action="" method="post">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="用户名" required>
+        {% block content1 %}{% endblock %}
+        <input type="password" name="password" placeholder="密码" required>
+        {% block title3 %}{% endblock %}
+        <span style="display:block;color:red;">{{ warning }}</span>
+        <div class="aitssendbuttonw3ls">
+            <p> {% block title4 %}{% endblock %}</p>
+            <div class="clear"></div>
+        </div>
+    </form>
+</div>
+
+<div class="w3footeragile">
+    <p> &copy; 2024 University of Shanghai for Science and Technology <a href="https://jwc.usst.edu.cn/">USST</a>
+    </p>
+</div>
+<script src="{% static 'login/js/main.js' %}"></script>
+<script>
+    var canvas = document.getElementById('particles');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    {{ js | safe}}
+</script>
+
+</body>
+
+</html>

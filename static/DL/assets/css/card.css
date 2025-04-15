@@ -1,0 +1,100 @@
+
+.card_new{
+    width: 300px;
+    height: 400px;
+    position: relative;
+}
+
+.card_new .front{
+    background-size: cover;
+    color: #fff;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    border-radius: 15px;
+}
+
+.card_new .front::before{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 80px;
+    top:55%;
+    background: rgba(0,0,0,0.45);
+    /*transform: translate(-50%,-50%);*/
+    transform: translate3d(-50%,-50%,15px);
+}
+.card_new .front p{
+    font-size: 30px;
+    position: absolute;
+    width: 400px;
+    top: 55%;
+    left: 50%;
+    transform: translateX(-50%)
+                translateY(-50%)
+                translateZ(60px);
+}
+
+.card_new .back{
+    width: 100%;
+    height: 100%;
+    color:#fff;
+    background-color: #ceb36b;
+    background-size: cover;
+    padding: 20px;
+    border-radius: 15px;
+    transform: rotateY(180deg);
+}
+
+.card_new .front,
+.card_new .back{
+    position: absolute;
+    top: 0;
+    left: 0;
+    backface-visibility: hidden;
+    transition: transform 1.5s;
+    transform-style: preserve-3d;
+}
+.threeD{
+    backface-visibility: hidden;
+    transform: translateZ(60px);
+}
+.card_new:hover .front{
+    transform: rotateY(-180deg);
+}
+.card_new:hover .back{
+    transform: rotateY(0deg);
+}
+
+.card_new .back .virus{
+    width: 250px;
+    border-bottom: 2px solid #b49758;
+}
+
+.card_new .back .virus h2{
+    color: #f8fae4;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+.card_new .back span{
+    display: inline-block;
+    width: 40px;
+    height: 25px;
+    text-align: center;
+    background-color: #c09f5a;
+    line-height: 25px;
+    border-radius: 2px;
+    color: #191d20;
+    font-weight: bold;
+}
+
+.card_new .back .desc{
+    text-indent: 2em;
+    font-size: 12px;
+    color: #fff;
+    text-align: left;
+    line-height: 30px;
+    padding: 15px 5px;
+    letter-spacing: 2px;
+}

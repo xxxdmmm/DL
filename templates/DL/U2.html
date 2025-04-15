@@ -1,0 +1,149 @@
+{% extends 'DL/template.html' %}
+{% load static %}
+{% block head %}
+    <style>
+        img {
+            overflow: hidden;
+        }
+
+        button[class="btn btn-light"] {
+            height: 100%;
+            width: 100%;
+            font-size: 30px;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .img_container {
+            height: 100%;
+            width: 100%
+        }
+
+        .card {
+
+            box-shadow: 0 0.1rem 0.7rem rgb(0 0 0 / 18%);
+            border: 1px solid rgba(0, 0, 0, 0);
+            background-color: rgb(0 0 0 / 0.24);
+            margin-bottom: 30px;
+        }
+
+        h5[class='mb-0'] {
+            font-size: 40px;
+            color: #ffffff;
+        }
+    </style>
+{% endblock %}
+
+
+{% block content %}
+    <div class="page-wrapper">
+        <!--page-content-wrapper-->
+        <div class="page-content-wrapper">
+            <div class="page-content">
+                <!--图片-->
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card radius-15" style="height: 70vh">
+                            <div class="card-body">
+                                <div class="img_container">
+                                    <img src="{% static 'DL/img/preupload.png' %}" id="init_img">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card radius-15" style="height: 70vh">
+                            <div class="card-body">
+                                <div class="img_container">
+                                    <img src="{% static 'DL/img/preupload.png' %}" id="after_img">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--按钮-->
+                <div class="row">
+                    <div class="offset-2 col-md-2" style="height: 10vh">
+                        <input type="file" id="fileInput" style="display: none;" name="image">
+                        <button type="button" class="btn btn-light" id="choose_img">
+                            选择图片
+                        </button>
+                    </div>
+                    <div class="offset-4 col-md-2" style="height: 10vh">
+                        <button type="button" class="btn btn-light" id="process">
+                            开始处理
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end page-content-wrapper-->
+
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script>
+        var image_base64 = "";
+
+        $(function () {
+            $("#choose_img").click(function () {
+                $("#fileInput").click()
+            });
+        });
+
+        $(function () {
+            $("#fileInput").on("change", function (event) {
+                var file = event.target.files[0];
+                if (!file) {
+                    return;
+                }
+                var reader = new FileReader();
+                reader.onload = function (evt) {
+                    $("#init_img").attr("src", evt.target.result); //evt.target.result 是 FileReader 对象读取到的文件内容以 Data URL 的形式表示。Data URL 是一种将文件内容嵌入到 URL 中的方法，通常以 "data:image/jpeg;base64,..." 的形式呈现，其中包含了文件的二进制数据。
+                    image_base64 = evt.target.result.split(",")[1];
+                    console.log(image_base64)
+                };
+                {#reader.onload 是 FileReader 对象的一个事件处理函数，用于处理文件读取操作完成时触发的事件。当 FileReader 对象成功读取文件后，会触发 load 事件，并调用 reader.onload 指定的回调函数。在这个回调函数中，你可以访问 reader.result 属性来获取读取的文件内容，通常是以 Data URL 的形式表示。#}
+                reader.readAsDataURL(file);
+                {#reader.readAsDataURL(file) 是 FileReader 对象的方法，用于读取指定的文件，并将文件内容以 Data URL 的形式返回。具体来说，它会将文件内容读取为一个以 "data: 开头的 URL，后面跟着 MIME 类型和 Base64 编码的文件内容。这个 URL 可以直接用于在浏览器中显示图片或者其他类型的文件内容。#}
+                {#在代码中，reader.readAsDataURL(file) 用于读取用户选择的文件内容，并将其转换为 Data URL 格式。读取操作完成后，FileReader 对象会触发 load 事件，从而执行 reader.onload 中的回调函数。#}
+            });
+        });
+
+        function sleep(time) {
+            var timeStamp = new Date().getTime();
+            var endTime = timeStamp + time;
+            while (true) {
+                if (new Date().getTime() > endTime) {
+                    return;
+                }
+            }
+        }
+
+
+        $(function () {
+            $('#process').click(function () {
+                $("#after_img").attr("src", "{% static 'DL/img/loading.gif' %}")
+                $.ajax({
+                    url: "/U2/",
+                    type: "post",
+                    data: {
+                        "image_data": image_base64
+                    },
+                    success: function (res) {
+                        {#console.log(res)#}
+                        var img_data = "data:image/grayscale;base64," + res;
+                        $("#after_img").attr("src", img_data);
+                    }
+                })
+            })
+        })
+
+
+    </script>
+
+{% endblock %}

@@ -1,0 +1,267 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <title>细胞分割平台</title>
+    <!--favicon-->
+    <link rel="icon" href="{% static 'DL/assets/images/favicon-32x32.png' %}" type="image/png"/>
+    <link href="{% static 'DL/assets/plugins/simplebar/css/simplebar.css' %}" rel="stylesheet"/>
+    <link href="{% static 'DL/assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css' %}"
+          rel="stylesheet"/>
+    <link href="{% static 'DL/assets/plugins/metismenu/css/metisMenu.min.css' %}" rel="stylesheet"/>
+    <!-- loader-->
+    <link href="{% static 'DL/assets/css/pace.min.css' %}" rel="stylesheet"/>
+    <script src="{% static 'DL/assets/js/pace.min.js' %}"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'DL/assets/css/bootstrap.min.css' %}"/>
+    <!-- Icons CSS -->
+    <link rel="stylesheet" href="{% static 'DL/assets/css/icons.css' %}"/>
+    <!-- App CSS -->
+    <link rel="stylesheet" href="{% static 'DL/assets/css/app.css' %}"/>
+    <!-- JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="{% static 'DL/assets/js/jquery.min.js' %}"></script>
+    <script src="{% static 'DL/assets/js/popper.min.js' %}"></script>
+    <script src="{% static 'DL/assets/js/bootstrap.min.js' %}"></script>
+    <!--plugins-->
+    <script src="{% static 'DL/assets/plugins/simplebar/js/simplebar.min.js' %}"></script>
+    <script src="{% static 'DL/assets/plugins/metismenu/js/metisMenu.min.js' %}"></script>
+    <script src="{% static 'DL/assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js' %}"></script>
+    <!-- Vector map JavaScript -->
+    <script src="{% static 'DL/assets/plugins/apexcharts-bundle/js/apexcharts.min.js' %}"></script>
+    <!-- App JS -->
+    <script src="{% static 'DL/assets/js/app.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'DL/assets/css/circle.css' %}">
+    <link rel="stylesheet" href="{% static 'DL/assets/css/card.css' %}">
+    <script>
+        new PerfectScrollbar('.dashboard-social-list');
+        new PerfectScrollbar('.dashboard-top-countries');
+    </script>
+    <script src="{% static 'DL/assets/plugins/echarts/echarts.min.js' %}"></script>
+    <script src="{% static 'DL/assets/plugins/echarts/china.js' %}"></script>
+    {% block head %}
+    {% endblock %}
+</head>
+<style>
+    .logo-icon-2 {
+
+        width: 35px;
+
+        margin-left: 10px;
+
+    }
+</style>
+
+<body class="bg-theme bg-theme1">
+
+
+<!-- wrapper -->
+<div class="wrapper">
+
+
+    <!--sidebar-wrapper-->
+    <div class="sidebar-wrapper" data-simplebar="true">
+        <div class="sidebar-header">
+            <div class="">
+                <img src="{% static 'DL/img/log.png' %}" class="logo-icon-2" alt=""/>
+            </div>
+            <div>
+                <h4 class="logo-text">模型选择</h4>
+            </div>
+            <a href="javascript:;" class="toggle-btn ml-auto"> <i class="bx bx-menu"></i>
+            </a>
+        </div>
+
+
+        <!--navigation-->
+        <ul class="metismenu" id="menu">
+            <li style="margin-top: 10px">
+                <a href="/AttU2/">
+                    <div class="parent-icon"><i class="bx bx-envelope"></i>
+                    </div>
+                    <div class="menu-title">Attention U2-net</div>
+                </a>
+                <hr>
+            </li>
+            <li>
+                <a href="/U2/">
+                    <div class="parent-icon"><i class="bx bx-conversation"></i>
+                    </div>
+                    <div class="menu-title">U2-net</div>
+                </a>
+                <hr>
+            </li>
+            <li>
+                <a href="/ResU/">
+                    <div class="parent-icon"><i class="bx bx-archive"></i>
+                    </div>
+                    <div class="menu-title">ResU-net</div>
+                </a>
+                <hr>
+            </li>
+            <li>
+                <a href="/U/">
+                    <div class="parent-icon"><i class="bx bx-group"></i>
+                    </div>
+                    <div class="menu-title">U-net</div>
+                </a>
+                <hr>
+            </li>
+
+             <li>
+                <a href="/static/DL/test_img.zip">
+                    <div class="parent-icon"><i class="bx bx-task"></i>
+                    </div>
+                    <div class="menu-title">获取测试样品</div>
+                </a>
+                <hr>
+            </li>
+        </ul>
+        <!--end navigation-->
+    </div>
+    <!--end sidebar-wrapper-->
+
+
+    <!--header-->
+    <header class="top-header">
+        <nav class="navbar navbar-expand">
+
+
+            <div class="right-topbar ml-auto">
+
+                <ul class="navbar-nav">
+                    <li class="nav-item" style="position: absolute;left: 0">
+                        <a class="nav-link position-relative" href="#help" id="help">
+                            帮助文档
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                                 class="bi bi-file-earmark-text" viewBox="0 0 16 16">
+                                <path d="M5.5 7a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zM5 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5z"/>
+                                <path d="M9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.5L9.5 0zm0 1v2A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/>
+                            </svg>
+                        </a>
+
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link position-relative">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                                 class="bi bi-hospital" viewBox="0 0 16 16">
+                                <path d="M8.5 5.034v1.1l.953-.55.5.867L9 7l.953.55-.5.866-.953-.55v1.1h-1v-1.1l-.953.55-.5-.866L7 7l-.953-.55.5-.866.953.55v-1.1h1ZM13.25 9a.25.25 0 0 0-.25.25v.5c0 .138.112.25.25.25h.5a.25.25 0 0 0 .25-.25v-.5a.25.25 0 0 0-.25-.25h-.5ZM13 11.25a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-.5Zm.25 1.75a.25.25 0 0 0-.25.25v.5c0 .138.112.25.25.25h.5a.25.25 0 0 0 .25-.25v-.5a.25.25 0 0 0-.25-.25h-.5Zm-11-4a.25.25 0 0 0-.25.25v.5c0 .138.112.25.25.25h.5A.25.25 0 0 0 3 9.75v-.5A.25.25 0 0 0 2.75 9h-.5Zm0 2a.25.25 0 0 0-.25.25v.5c0 .138.112.25.25.25h.5a.25.25 0 0 0 .25-.25v-.5a.25.25 0 0 0-.25-.25h-.5ZM2 13.25a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-.5Z"/>
+                                <path d="M5 1a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1a1 1 0 0 1 1 1v4h3a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h3V3a1 1 0 0 1 1-1V1Zm2 14h2v-3H7v3Zm3 0h1V3H5v12h1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3Zm0-14H6v1h4V1Zm2 7v7h3V8h-3Zm-8 7V8H1v7h3Z"/>
+                            </svg>
+                            <span style="letter-spacing:20px;">胃肠道癌细胞分割平台</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                                 class="bi bi-hospital" viewBox="0 0 16 16">
+                                <path d="M8.5 5.034v1.1l.953-.55.5.867L9 7l.953.55-.5.866-.953-.55v1.1h-1v-1.1l-.953.55-.5-.866L7 7l-.953-.55.5-.866.953.55v-1.1h1ZM13.25 9a.25.25 0 0 0-.25.25v.5c0 .138.112.25.25.25h.5a.25.25 0 0 0 .25-.25v-.5a.25.25 0 0 0-.25-.25h-.5ZM13 11.25a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-.5Zm.25 1.75a.25.25 0 0 0-.25.25v.5c0 .138.112.25.25.25h.5a.25.25 0 0 0 .25-.25v-.5a.25.25 0 0 0-.25-.25h-.5Zm-11-4a.25.25 0 0 0-.25.25v.5c0 .138.112.25.25.25h.5A.25.25 0 0 0 3 9.75v-.5A.25.25 0 0 0 2.75 9h-.5Zm0 2a.25.25 0 0 0-.25.25v.5c0 .138.112.25.25.25h.5a.25.25 0 0 0 .25-.25v-.5a.25.25 0 0 0-.25-.25h-.5ZM2 13.25a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-.5Z"/>
+                                <path d="M5 1a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1a1 1 0 0 1 1 1v4h3a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h3V3a1 1 0 0 1 1-1V1Zm2 14h2v-3H7v3Zm3 0h1V3H5v12h1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3Zm0-14H6v1h4V1Zm2 7v7h3V8h-3Zm-8 7V8H1v7h3Z"/>
+                            </svg>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link position-relative">
+                            <div id="dateTime"></div>
+                        </a>
+
+                    </li>
+
+
+                    <li class="nav-item dropdown dropdown-user-profile">
+                        <a class="nav-link dropdown-toggle dropdown-toggle-nocaret">
+                            <div class="media user-box align-items-center">
+                                <div class="media-body user-info">
+                                    <p class="user-name mb-0">{{ request.session.name }}</p>
+                                    <p class="designattion mb-0">Available</p>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+
+
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!--end header-->
+
+    {% block content %}
+    {% endblock %}
+
+    <!--start overlay-->
+    <div class="overlay toggle-btn-mobile"></div>
+    <!--end overlay-->
+
+
+    <!--Start Back To Top Button-->
+    <a href="javaScript:;" class="back-to-top"><i class='bx bxs-up-arrow-alt'></i></a>
+    <!--End Back To Top Button-->
+
+</div>
+<!-- end wrapper -->
+
+
+<!--start switcher-->
+<div class="switcher-wrapper">
+    <div class="switcher-btn"><i class='bx bx-cog bx-spin'></i>
+    </div>
+    <div class="switcher-body">
+        <h5 class="mb-0 text-uppercase">Theme Customizer</h5>
+        <hr/>
+        <p class="mb-0">Gaussion Texture</p>
+        <hr>
+
+        <ul class="switcher">
+            <li id="theme1"></li>
+            <li id="theme2"></li>
+            <li id="theme3"></li>
+            <li id="theme4"></li>
+            <li id="theme5"></li>
+            <li id="theme6"></li>
+        </ul>
+        <hr>
+        <p class="mb-0">Gradient Background</p>
+        <hr>
+
+        <ul class="switcher">
+            <li id="theme7"></li>
+            <li id="theme8"></li>
+            <li id="theme9"></li>
+            <li id="theme10"></li>
+            <li id="theme11"></li>
+            <li id="theme12"></li>
+        </ul>
+    </div>
+</div>
+<!--end switcher-->
+
+<script>
+    Date.prototype.format = function (fmt) {
+        var o = {
+            "y+": this.getFullYear, //年
+            "M+": this.getMonth() + 1, //月份
+            "d+": this.getDate(), //日
+            "h+": this.getHours(), //小时
+            "m+": this.getMinutes(), //分
+            "s+": this.getSeconds() //秒
+        };
+        if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+        for (var k in o)
+            if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+        return fmt;
+    }
+    setInterval("document.getElementById('dateTime').innerHTML = (new Date()).format('yyyy-MM-dd hh:mm:ss');", 1000);
+</script>
+<script>
+    $(function () {
+        $('#help').click(function () {
+            alert("1.首先从本地文件中选择一张图片\n2.点击开始处理，等待片刻即可得到预测结果\n注：若暂时无测试图片，可以下载我们的测试样本")
+        })
+    })
+</script>
+{% block js %}
+{% endblock %}
+</body>
+</html>
